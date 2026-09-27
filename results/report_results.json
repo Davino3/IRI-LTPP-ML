@@ -1,0 +1,303 @@
+{
+ "n_rows": 15935,
+ "n_sections": 1550,
+ "n_sites": 471,
+ "n_states": 62,
+ "years": [
+  1989,
+  2025
+ ],
+ "gps_sections": 672,
+ "sps_sections": 992,
+ "sps_sites": 151,
+ "sps_rule_groups": 823,
+ "iri": {
+  "count": 15935.0,
+  "mean": 1.346,
+  "std": 0.615,
+  "min": 0.319,
+  "25%": 0.929,
+  "50%": 1.197,
+  "75%": 1.587,
+  "max": 5.743
+ },
+ "skew": [
+  1.71,
+  0.35
+ ],
+ "cond": {
+  "Good": 0.708,
+  "Fair": 0.249,
+  "Poor": 0.044
+ },
+ "rigid_median": {
+  "Flexible": 1.17,
+  "Rigid": 1.84
+ },
+ "between_share": 0.617,
+ "corr": {
+  "AGE_SINCE_CN": 0.011,
+  "IS_REHAB": -0.105,
+  "IS_RIGID": 0.227,
+  "URBAN": 0.034,
+  "LOG_ESAL": -0.065,
+  "LOG_AADTT": -0.121,
+  "SHARE_CLASS9": -0.057,
+  "TEMP_AVG": -0.092,
+  "FREEZE_INDEX": 0.102,
+  "FREEZE_THAW": 0.033
+ },
+ "n_lag": 11581,
+ "n_lag_sites": 470,
+ "n_lag_sections": 1527,
+ "cv_site": {
+  "Mean of training IRI": {
+   "r2": -0.016,
+   "r2_sd": 0.01,
+   "rmse": 0.592,
+   "mae": 0.435
+  },
+  "Linear regression (A)": {
+   "r2": 0.044,
+   "r2_sd": 0.063,
+   "rmse": 0.575,
+   "mae": 0.421
+  },
+  "Polynomial degree 2 + ridge (A)": {
+   "r2": 0.045,
+   "r2_sd": 0.082,
+   "rmse": 0.575,
+   "mae": 0.422
+  },
+  "Random forest (A)": {
+   "r2": -0.032,
+   "r2_sd": 0.062,
+   "rmse": 0.597,
+   "mae": 0.448
+  },
+  "Persistence (previous IRI)": {
+   "r2": 0.908,
+   "r2_sd": 0.011,
+   "rmse": 0.178,
+   "mae": 0.099
+  },
+  "Linear regression (B)": {
+   "r2": 0.925,
+   "r2_sd": 0.01,
+   "rmse": 0.16,
+   "mae": 0.093
+  },
+  "Random forest (B)": {
+   "r2": 0.922,
+   "r2_sd": 0.01,
+   "rmse": 0.164,
+   "mae": 0.097
+  }
+ },
+ "cv_section": {
+  "Linear regression (A)": {
+   "r2": 0.087,
+   "r2_sd": 0.019,
+   "rmse": 0.567,
+   "mae": 0.41
+  },
+  "Random forest (A)": {
+   "r2": 0.36,
+   "r2_sd": 0.04,
+   "rmse": 0.474,
+   "mae": 0.324
+  },
+  "Persistence (previous IRI)": {
+   "r2": 0.909,
+   "r2_sd": 0.006,
+   "rmse": 0.179,
+   "mae": 0.099
+  },
+  "Linear regression (B)": {
+   "r2": 0.927,
+   "r2_sd": 0.005,
+   "rmse": 0.16,
+   "mae": 0.092
+  },
+  "Random forest (B)": {
+   "r2": 0.927,
+   "r2_sd": 0.005,
+   "rmse": 0.16,
+   "mae": 0.093
+  }
+ },
+ "cv_spsrule": {
+  "Linear regression (A)": {
+   "r2": 0.033,
+   "r2_sd": 0.047,
+   "rmse": 0.578,
+   "mae": 0.42
+  },
+  "Random forest (A)": {
+   "r2": 0.113,
+   "r2_sd": 0.07,
+   "rmse": 0.553,
+   "mae": 0.399
+  }
+ },
+ "change_r2": 0.051,
+ "poly": {
+  "1": [
+   0.101,
+   0.077,
+   0.004
+  ],
+  "2": [
+   0.159,
+   0.045,
+   -0.024
+  ],
+  "3": [
+   0.257,
+   -0.293,
+   -13.417
+  ],
+  "4": [
+   0.378,
+   -5.692,
+   -14966.202
+  ]
+ },
+ "ridge": {
+  "1": -2.53,
+  "100": -0.237,
+  "1000": -0.014,
+  "10000": 0.043
+ },
+ "holdout": {
+  "n_train": 8737,
+  "n_test": 2844,
+  "sites_test": 94
+ },
+ "coef_B": {
+  "AGE_SINCE_CN": -0.0044,
+  "IS_REHAB": -0.0055,
+  "IS_RIGID": -0.0082,
+  "URBAN": 0.0079,
+  "LOG_ESAL": -0.0013,
+  "LOG_AADTT": 0.0037,
+  "SHARE_CLASS9": 0.0073,
+  "TEMP_AVG": 0.0127,
+  "FREEZE_INDEX": 0.021,
+  "FREEZE_THAW": 0.0056,
+  "PREV_IRI": 0.5623,
+  "GAP_YRS": 0.033
+ },
+ "coef_A": {
+  "AGE_SINCE_CN": 0.0164,
+  "IS_REHAB": -0.0298,
+  "IS_RIGID": 0.1177,
+  "URBAN": 0.0323,
+  "LOG_ESAL": 0.0483,
+  "LOG_AADTT": -0.1028,
+  "SHARE_CLASS9": -0.0399,
+  "TEMP_AVG": 0.2368,
+  "FREEZE_INDEX": 0.1953,
+  "FREEZE_THAW": 0.1039
+ },
+ "perm": {
+  "AGE_SINCE_CN": 0.0005,
+  "IS_REHAB": -0.0003,
+  "IS_RIGID": 0.0,
+  "URBAN": 0.0001,
+  "LOG_ESAL": 0.0007,
+  "LOG_AADTT": -0.0007,
+  "SHARE_CLASS9": 0.0001,
+  "TEMP_AVG": 0.0001,
+  "FREEZE_INDEX": 0.0004,
+  "FREEZE_THAW": 0.0004,
+  "PREV_IRI": 1.8568,
+  "GAP_YRS": 0.004
+ },
+ "cls": {
+  "Always not poor": {
+   "prec": 0.0,
+   "rec": 0.0,
+   "f1": 0.0,
+   "acc": 0.962,
+   "TP": 0,
+   "FN": 107,
+   "FP": 0
+  },
+  "Persistence": {
+   "prec": 0.927,
+   "rec": 0.71,
+   "f1": 0.804,
+   "acc": 0.987,
+   "TP": 76,
+   "FN": 31,
+   "FP": 6
+  },
+  "Logistic, threshold 0.5": {
+   "prec": 0.881,
+   "rec": 0.832,
+   "f1": 0.856,
+   "acc": 0.989,
+   "TP": 89,
+   "FN": 18,
+   "FP": 12
+  },
+  "Logistic, threshold 0.3": {
+   "prec": 0.744,
+   "rec": 0.897,
+   "f1": 0.814,
+   "acc": 0.985,
+   "TP": 96,
+   "FN": 11,
+   "FP": 33
+  },
+  "Logistic, threshold 0.1": {
+   "prec": 0.515,
+   "rec": 0.963,
+   "f1": 0.671,
+   "acc": 0.964,
+   "TP": 103,
+   "FN": 4,
+   "FP": 97
+  },
+  "Logistic, balanced weights": {
+   "prec": 0.369,
+   "rec": 0.991,
+   "f1": 0.538,
+   "acc": 0.936,
+   "TP": 106,
+   "FN": 1,
+   "FP": 181
+  },
+  "Logistic without previous IRI (balanced)": {
+   "prec": 0.056,
+   "rec": 0.626,
+   "f1": 0.103,
+   "acc": 0.588,
+   "TP": 67,
+   "FN": 40,
+   "FP": 1132
+  }
+ },
+ "cls_poor_test": 107,
+ "poor_share": 0.04,
+ "logit_coef": {
+  "AGE_SINCE_CN": -0.16,
+  "IS_REHAB": -0.026,
+  "IS_RIGID": -0.124,
+  "URBAN": 0.06,
+  "LOG_ESAL": -0.122,
+  "LOG_AADTT": 0.239,
+  "SHARE_CLASS9": 0.011,
+  "TEMP_AVG": -0.181,
+  "FREEZE_INDEX": 0.034,
+  "FREEZE_THAW": 0.062,
+  "PREV_IRI": 3.056,
+  "GAP_YRS": 0.443
+ },
+ "holdout_r2": [
+  0.001,
+  0.949,
+  0.935
+ ]
+}
