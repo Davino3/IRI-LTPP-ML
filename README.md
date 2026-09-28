@@ -24,23 +24,27 @@ I then went beyond the course with random forests, grouped cross-validation and 
 
 ## Key findings
 
-| Model (5-fold cross-validation, grouped by location) | R² | RMSE (m/km) |
-|---|---|---|
-| Predict the mean IRI | −0.02 | 0.592 |
-| Linear regression, traffic + climate + section attributes | 0.04 | 0.575 |
-| Random forest, same features | −0.03 | 0.597 |
-| **Persistence:** next IRI = previous IRI | 0.91 | 0.178 |
-| **Linear regression with previous IRI** | **0.93** | **0.160** |
+All numbers below come from the notebook (`notebooks/iri_regression_classification.ipynb`). Models were trained on 80% of road sections and tested on the 20% they never saw.
 
-1. **Traffic and climate alone explain very little roughness.** R² was about 0.04 on unseen locations, and no model type did better.
-2. **Previous condition dominates.** Repeating the last measured IRI already gives R² = 0.91. The other features cut the error by about 10%. The useful ones were time since the last survey, freezing index and temperature.
-3. **The validation design changes the conclusions.** A random forest seemed to explain 36% of the variation when folds were grouped by section. That fell to 11% when grouped by LTPP site, and to about 0% when grouped by location. The forest had been recognising places it had already seen.
-4. **Classification of poor pavements** (IRI > 2.68 m/km): logistic regression with previous IRI caught 83% of poor observations at 88% precision. Persistence caught 71% at 93%.
+| Model (test set, unseen sections) | R² | RMSE (m/km) |
+|---|---|---|
+| Predict the mean IRI | −0.008 | 0.619 |
+| Linear regression, traffic + climate + section attributes | 0.068 | 0.595 |
+| Polynomial (degree 3) + ridge, same features | 0.069 | 0.595 |
+| **Persistence:** next IRI = previous IRI | 0.897 | 0.197 |
+| **Linear regression with previous IRI** | **0.914** | **0.179** |
+
+1. **Traffic and climate alone explain very little roughness.** Test R² was 0.068, only about 4% better than guessing the mean. Training R² (0.100) was also low, so the model underfits. Polynomial features did not help: degree 4 reached training R² 0.364 but test R² −1.87 (overfitting), and ridge regularisation only restored 0.069.
+2. **Previous condition dominates.** Simply repeating the last measured IRI gives R² = 0.897. Adding the other features raises this to 0.914 and cuts the error by about 9% (0.197 to 0.179 m/km), but explains only 5.6% of the change in IRI between surveys. After previous IRI, the most useful features were years since the last survey, freezing index and the share of heavy (Class 9) trucks.
+3. **The validation design changes the conclusions.** In five-fold cross-validation, a random forest without previous IRI scored R² 0.345 when folds were grouped by section, but only 0.092 when grouped by LTPP site. Sections at the same site share traffic and weather, so the forest had been recognising sites it had already seen. With previous IRI, both groupings agree (about 0.92).
+4. **Classification of poor pavements** (IRI > 2.68 m/km; 97 of 2,295 test observations): always predicting "not poor" is 95.8% accurate but finds no poor roads. Logistic regression with previous IRI found 65% of poor observations at 88% precision (persistence: 61% at 92%). Lowering the threshold to 0.3 found 80% at 77% precision. Without previous IRI, only 7% of its alerts were correct.
 
 <p align="center">
-  <img src="figures/fig3_predicted_vs_measured.png" width="720"><br>
-  <em>Predicted against measured IRI on held-out locations: (a) traffic and climate only, (b) with previous IRI.</em>
+  <img src="figures/notebook_predicted_vs_actual.png" width="460"><br>
+  <em>From the notebook: predicted against actual IRI on the test set using traffic and climate only. Predictions bunch around the average.</em>
 </p>
+
+> **Note on the report.** `docs/IRI_Project_Report.pdf` repeats the analysis with an even stricter test (holding out whole locations that share a climate record, via `src/report_analysis.py`). Its numbers are slightly lower (for example, the random forest without previous IRI falls to about zero) but the conclusions are the same.
 
 ## Repository contents
 
@@ -53,7 +57,7 @@ IRI-LTPP-ML/
 ├── src/
 │   ├── clean_data.py               builds pavement_clean.csv from the raw LTPP exports
 │   └── report_analysis.py          reproduces every number and figure in the report
-├── figures/                        figures used in the report
+├── figures/                        figures used in the README and the report
 ├── results/
 │   └── report_results.json         all numbers reported in the report
 ├── docs/
@@ -67,7 +71,7 @@ IRI-LTPP-ML/
 ## How to run
 
 ```bash
-git clone https://github.com/<your-username>/IRI-LTPP-ML.git
+git clone https://github.com/Davino3/IRI-LTPP-ML.git
 cd IRI-LTPP-ML
 pip install -r requirements.txt
 
